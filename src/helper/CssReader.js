@@ -59,7 +59,7 @@ class CssReader {
                 }
 
                 if(propertyValue !== initialValue) {
-                    this._watchingPropsCallback[property](property, new CssValue(propertyValue, this._node));
+                    this._watchingPropsCallback[property](property, new CssValue(propertyValue, this._node).getValue());
                     return this._pseudoWatcher(property, propertyValue);
                 }
 

@@ -117,11 +117,7 @@ const elements = {
 const readPlotStyles = new CssReader(plotElement);
 readPlotStyles.subscribe(
     (property, value) => {
-        console.log('Changed', property, value, typeof value);
-
-        if(value._classification === UNIT_CLASSIFICATIONS.LENGTH) {
-            debugger;
-        }
+        console.log('Changed', property, value.toPixel(), typeof value);
     },
     'width',
     'height',
