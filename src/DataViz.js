@@ -1,5 +1,6 @@
 import mojs from 'mo-js';
 import { CssReader } from './helper/CssReader';
+import { UNIT_CLASSIFICATIONS } from './helper/CssValueClassifications';
 
 const data = [
     { value: Math.random(), label: 'Dorothea' },
@@ -117,7 +118,10 @@ const readPlotStyles = new CssReader(plotElement);
 readPlotStyles.subscribe(
     (property, value) => {
         console.log('Changed', property, value, typeof value);
-        debugger;
+
+        if(value._classification === UNIT_CLASSIFICATIONS.LENGTH) {
+            debugger;
+        }
     },
     'width',
     'height',

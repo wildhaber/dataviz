@@ -5,7 +5,7 @@ import { CssValueLength } from './CssValueLength';
 
 class CssValue {
     constructor(value, node) {
-        this._value = value;
+        this._value = value.trim();
         this._node = node;
         this._unit = new CssValueClassifier(this._value);
         this._classification = this._unit.getClassification();

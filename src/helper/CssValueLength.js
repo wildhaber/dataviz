@@ -4,24 +4,35 @@ class CssValueLength {
     constructor(value, node) {
         this._value = value;
         this._node = node;
-        this._nodeClone = this._node.cloneNode(false);
-        this._sample = document.createElement('div');
-        this._sample.style.position = 'absolute';
-        this._nodeClone.appendChild(this._sample);
+
+        this._sample = this._getComputedSample();
 
         this._classifier = new CssValueClassifier(value);
         this._pixel = this._getPixel();
         this._pixelRaw = parseInt(this._pixel);
         this._pixelWidth = this._getPixel(true);
         this._pixelHeight = this._getPixel(false);
+
+        this._cleanupComputedSample();
+    }
+
+    _getComputedSample() {
+        document.createElement('div');
+        this._sample.style.position = 'absolute';
+        this._sample.style.opacity = 0;
+        this._sample.style.pointerEvents = 'none';
+        this._node.appendChild(this._sample);
+    }
+
+    _cleanupComputedSample() {
+        this._node.removeChild(this._sample);
     }
 
     _getComputedPixel(width = true) {
         const dimension = (width) ? 'width' : 'height';
         this._sample.style[dimension] = this._value;
 
-        return getComputedStyle(this._sample)
-            .getPropertyValue(dimension);
+        return getComputedStyle(this._sample).getPropertyValue(dimension);
     }
 
     _getPixel(width = true) {
@@ -51,7 +62,7 @@ class CssValueLength {
 
     toVw() {
         const boxWidth = window.innerWidth;
-        debugger;
+
         return (boxWidth)
             ? `${this._pixelRaw / boxWidth * 100}vw`
             : 0;

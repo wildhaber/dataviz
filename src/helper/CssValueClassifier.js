@@ -57,8 +57,6 @@ class CssValueClassifier {
     }
 
     isLength() {
-        debugger;
-
         return this.isPixel()
             || this.isPercent()
             || this.isEm()
