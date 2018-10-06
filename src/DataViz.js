@@ -1,6 +1,4 @@
 import mojs from 'mo-js';
-import { CssReader } from './helper/CssReader';
-import { UNIT_CLASSIFICATIONS } from './helper/CssValueClassifications';
 
 const data = [
     { value: Math.random(), label: 'Dorothea' },
@@ -68,7 +66,7 @@ function drawCircle(elements, dataPoint, radius = 200, fill = 'black', delay = 0
     // Labels
     const labelElement = document.createElement('label');
     labelElement.classList.add('dataviz-label');
-    labelElement.innerText = dataPoint.label;
+    labelElement.innerHTML = `${dataPoint.label} <span class='dataviz-label-value'>${Math.round(dataPoint.value * 100)}%</span>`;
     labelElement.style.left = `${connectorLength * 2}px`;
     labelElement.style.top = `${radius}px`;
 
@@ -114,18 +112,8 @@ const elements = {
     labelContainer,
 };
 
-const readPlotStyles = new CssReader(plotElement);
-readPlotStyles.subscribe(
-    (property, value) => {
-        console.log('Changed', property, value.toPixel(), typeof value);
-    },
-    'width',
-    'height',
-    '--dataviz-stroke-width',
-);
-
 data.sort((a, b) => {
-    return a.value > b.value ? -1 : 1;
+    return a.value < b.value ? -1 : 1;
 }).forEach((d, idx) => {
     drawCircle(
         elements,

@@ -5,7 +5,7 @@ class CssValueLength {
         this._value = value;
         this._node = node;
 
-        this._sample = this._getComputedSample();
+        this._computeSample();
 
         this._classifier = new CssValueClassifier(value);
         this._pixel = this._getPixel();
@@ -16,8 +16,8 @@ class CssValueLength {
         this._cleanupComputedSample();
     }
 
-    _getComputedSample() {
-        document.createElement('div');
+    _computeSample() {
+        this._sample = document.createElement('div');
         this._sample.style.position = 'absolute';
         this._sample.style.opacity = 0;
         this._sample.style.pointerEvents = 'none';
@@ -50,7 +50,7 @@ class CssValueLength {
     }
 
     toPercent(width = true) {
-        const box = this._nodeClone.getBoundingClientRect();
+        const box = this._node.getBoundingClientRect();
         const rawPixels = (width)
             ? parseInt(this._pixelWidth)
             : parseInt(this._pixelHeight);
