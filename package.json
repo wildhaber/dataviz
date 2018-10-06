@@ -1,0 +1,46 @@
+{
+  "name": "datavizjs",
+  "version": "0.0.1",
+  "description": "Data visualization framework",
+  "main": "dist/DataViz.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:prod": "npm run dist:pre:cleanup && ./node_modules/.bin/webpack --config=webpack.config.js --mode=production && npm run dist:post:cleanup",
+    "build:dev": "npm run dist:pre:cleanup && ./node_modules/.bin/webpack --config=webpack.config.js --mode=development && npm run dist:post:cleanup",
+    "dist:pre:cleanup": "rm -rf ./dist/",
+    "dist:post:cleanup": "rm -rf ./dist/DataVizStyles.js",
+    "serve": "./node_modules/.bin/http-server -p 3000 ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wildhaber/dataviz.git"
+  },
+  "keywords": [
+    "charts",
+    "graph",
+    "visualization",
+    "gui"
+  ],
+  "author": "Raphael Wildhaber",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wildhaber/dataviz/issues"
+  },
+  "homepage": "https://github.com/wildhaber/dataviz#readme",
+  "devDependencies": {
+    "css-loader": "1.0.0",
+    "csv-loader": "3.0.2",
+    "file-loader": "2.0.0",
+    "http-server": "0.11.1",
+    "mini-css-extract-plugin": "0.4.3",
+    "node-sass": "4.9.3",
+    "sass-loader": "7.1.0",
+    "style-loader": "0.23.0",
+    "webpack": "4.20.2",
+    "webpack-cli": "3.1.2",
+    "xml-loader": "1.2.1"
+  },
+  "dependencies": {
+    "mo-js": "0.288.2"
+  }
+}

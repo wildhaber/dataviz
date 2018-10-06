@@ -1,0 +1,26 @@
+@import 'config';
+
+.#{$project-scope}-label-container {
+    font-family: monospace;
+    color: var(--palette-color-text);
+    font-size: 1rem;
+    line-height: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.#{$project-scope}-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.4s, transform 0.4s;
+
+    &--active {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0%);
+    }
+}

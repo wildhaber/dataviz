@@ -1,0 +1,10 @@
+@mixin palette-generator($colors, $positive, $negative, $primary, $text) {
+    @each $color in $colors {
+        --palette-color-#{index($colors, $color)}: #{$color};
+    }
+
+    --palette-color-positive: #{$positive};
+    --palette-color-negative: #{$negative};
+    --palette-color-primary: #{$primary};
+    --palette-color-text: #{$text};
+}

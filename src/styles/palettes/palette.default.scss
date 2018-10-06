@@ -1,0 +1,11 @@
+@import 'palette.mixin';
+
+@mixin palette {
+    $colors: #0084d3 #ec6b10 #b32586 #67b52c #575757 #7d85b4 #f5b066 #9a9a9a #de85b9 #1c307e;
+    $color-positive: #67b52c;
+    $color-negative: #cc071e;
+    $color-primary: #0077b4;
+    $color-text: #323232;
+
+    @include palette-generator($colors, $color-positive, $color-negative, $color-primary, $color-text);
+}
