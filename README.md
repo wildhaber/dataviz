@@ -1,2 +1,2 @@
 # dataviz
-Data visualization framework
+Data visualization experiments
